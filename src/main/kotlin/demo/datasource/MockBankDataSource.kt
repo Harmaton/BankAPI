@@ -21,7 +21,7 @@ class MockBankDataSource : BankDataSource {
     override fun createBank(bank: Bank): Bank {
         banks.add(bank)
 
-        return Bank("",0.00,1)
+        return bank
     }
 
 
