@@ -11,6 +11,6 @@ class HelloWorldController {
 
     @GetMapping
     fun helloWorld(): String{
-        return " Harmaton Njagi the spring master"
+        return " Harmaton Njagi the spring boot boy"
     }
 }
