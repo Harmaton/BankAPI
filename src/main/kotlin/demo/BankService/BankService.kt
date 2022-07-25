@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service
 @Service
 class BankService(private val dataSource: BankDataSource) {
 
-fun getBanks(): Collection<Bank> = dataSource.getBanks()
+    fun getBanks(): Collection<Bank> = dataSource.getBanks()
 
-fun getBank(accountNumber: String): Bank = dataSource.getBank(accountNumber)
+    fun getBank(accountNumber: String): Bank = dataSource.getBank(accountNumber)
 
     fun addBank(bank: Bank): Bank = dataSource.createBank(bank)
+
+    fun updateBank(bank: Bank): Bank =
+        dataSource.updateBank(bank)
+
 
 
 }

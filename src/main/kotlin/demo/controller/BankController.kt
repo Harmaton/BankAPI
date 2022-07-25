@@ -11,6 +11,8 @@ import kotlin.IllegalArgumentException
 @RequestMapping("/api/banks")
 class BankController(private val service: BankService) {
 
+    //exception handling
+
     @ExceptionHandler(NoSuchElementException::class)
     fun handleNotFound(e: NoSuchElementException): ResponseEntity<String> =
         ResponseEntity(e.message, HttpStatus.NOT_FOUND)
@@ -19,6 +21,7 @@ class BankController(private val service: BankService) {
     fun handleNotFound(e: IllegalArgumentException): ResponseEntity<String> =
         ResponseEntity(e.message, HttpStatus.NOT_FOUND)
 
+    // get mapping
     @GetMapping
     fun getBanks() : Collection<Bank> = service.getBanks()
 
@@ -26,7 +29,12 @@ class BankController(private val service: BankService) {
     fun getBank(@PathVariable accountNumber: String) = "You want data about $accountNumber"
         ?: throw NoSuchElementException("Could not find a bank with account number $accountNumber")
 
+    // post mapping
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
     fun addBank(@RequestBody bank: Bank): Bank = service.addBank(bank)
+
+    //patch mapping
+    @PatchMapping
+    fun updateBank(@RequestBody bank: Bank): Bank = service.updateBank(bank)
 }
