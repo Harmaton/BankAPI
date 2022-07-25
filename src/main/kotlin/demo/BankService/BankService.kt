@@ -11,4 +11,7 @@ fun getBanks(): Collection<Bank> = dataSource.getBanks()
 
 fun getBank(accountNumber: String): Bank = dataSource.getBank(accountNumber)
 
+    fun addBank(bank: Bank): Bank = dataSource.createBank(bank)
+
+
 }

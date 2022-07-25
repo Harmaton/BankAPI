@@ -2,10 +2,8 @@ package demo.controller
 
 import demo.BankService.BankService
 import demo.model.Bank
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/banks")
@@ -16,5 +14,9 @@ class BankController(private val service: BankService) {
 
     @GetMapping("/{accountNumber}")
     fun getBank(@PathVariable accountNumber: String) = "You want data about $accountNumber"
+        ?: throw NoSuchElementException("Could not find a bank with account number $accountNumber")
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    fun addBank(@RequestBody bank: Bank): Bank = service.addBank(bank)
 }
