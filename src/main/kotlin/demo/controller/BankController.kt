@@ -19,7 +19,7 @@ class BankController(private val service: BankService) {
 
     @ExceptionHandler(IllegalArgumentException::class)
     fun handleNotFound(e: IllegalArgumentException): ResponseEntity<String> =
-        ResponseEntity(e.message, HttpStatus.NOT_FOUND)
+        ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
 
     // get mapping
     @GetMapping
