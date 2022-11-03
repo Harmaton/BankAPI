@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.*
 internal class BankControllerTest {
 
     @Test
-    fun getBanks() {
+    fun `getBanks`() {
+
     }
 }
